@@ -1,109 +1,299 @@
 <!DOCTYPE html>
-<html lang="fa">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="./assets/css/coin.css">
-    <link rel="stylesheet" href="./assets/css/style.css">
+    <title>Coin Tap Game</title>
     <style>
-        .score-display {
-            font-size: 50px;
-        }
+      .score-display {
+        font-size: 50px;
+      }
+
+      .clickable {
+        cursor: pointer;
+        transition: transform 0.1s ease;
+      }
+
+      .clickable:active {
+        transform: scale(1.1);
+      }
+
+      .popup {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        border-radius: 8px;
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body
+    class="min-h-screen bg-gradient-to-r from-[#C7913D] to-[#F1D06E] flex justify-center items-center p-3"
+  >
+    <div id="welcome-popup" class="popup">
+      <h2 class="text-lg font-bold mb-2">Welcome!</h2>
+      <p class="mb-4">Please enter your name:</p>
+      <input
+        type="text"
+        id="username-input"
+        class="p-2 border rounded w-full mb-4"
+        placeholder="Enter your name"
+      />
+      <button
+        onclick="saveName()"
+        class="bg-blue-500 text-white px-4 py-2 rounded"
+      >
+        Submit
+      </button>
+    </div>
 
-    <div class="min-h-screen bg-gradient-to-r from-[#C7913D] to-[#F1D06E] flex justify-center items-center p-3">
-        <div class="bg-gradient-to-r from-[#C7913D] to-[#F1D06E] rounded-3xl shadow-2xl p-4 w-full max-w-md text-white">
-            <div class="flex justify-between items-center mb-4 bg-slate-900/10 rounded-3xl shadow-xl">
-                <div class="flex items-center">
-                    <img src="./photos/logoo.jpg" width="40px" height="40px" alt="User Avatar" class="rounded-full mr-2">
-                    <span id="username-display"></span>
-                </div>
-                <button onclick="showSnackbar()" class="bg-600 p-2 rounded-full flex justify-between items-center bg-slate-900/10 hover:bg-slate-900/5 rounded-3xl">
-                    <span class="font-bold text-lg">2X Coins</span>
-                </button>
-            </div>
-
-            <div id="snackbar">Coming Soon !!</div>
-
-            <div class="flex justify-between items-center bg-slate-900/10 hover:bg-slate-900/5 p-2 rounded-3xl shadow-lg">
-                <button class="flex-1 items-center p-2">
-                    <a href="https://t.me/anzabcoin">
-                        <span>Join Community</span>
-                    </a>
-                </button>
-            </div>
-
-            <div class="text-center mb-4 mt-8">
-                <div class="text-4xl mb-2">
-                    <img src="./photos/scorephoto.png" width="50px" height="50px" alt="Coin" class="inline-block mb-1" id="coin-image">
-                    <span id="score" class="score font-bold text-4xl"></span>
-                </div>
-            </div>
-            <div class="flex justify-center mb-4" id="coin">
-                <img src="./photos/anzabcoin.png" width="80%" height="80%" alt="Character" class="rounded-full clickable shadow-2xl" onclick="startVibration()">
-            </div>
-            <div class="flex justify-between items-center mb-2">
-                <div class="flex items-center">
-                    <img src="./photos/charge.png" id="charge" alt="Energy" class="mr-2">
-                    <div class="flex justify-between items-center">
-                        <span id="inventory"></span>
-                        <span> / 5000</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="flex justify-between items-center bg-slate-900 rounded-3xl shadow-lg mb-2">
-              <div class="bg-zinc-600 rounded-3xl h-2 w-full mx-2">
-                 <div class="bg-gradient-to-r from-[#C7913D] to-[#F1D06E] h-2 rounded-3xl" style="width: 10%;" id="inventory-fill"></div>
-               </div><br>
-            </div>
-
-            <div class="flex justify-between items-center bg-slate-900 hover:bg-slate-900/95 p-3 rounded-3xl shadow-lg">
-                <button class="flex-1 flex flex-col items-center ">
-                    <img src="./photos/pick-hammer.png" alt="Exchange" class="p-1" width="40px" height="40px">
-                    <span class="text-sm">Mine</span>
-                </button>
-                <button class="flex-1 flex flex-col items-center">
-                    <a href="boost.html">
-                        <img src="./photos/start-up.png" alt="Mine" class="p-1" width="40px" height="40px">
-                        <span class="text-sm">Boost</span>
-                    </a>
-                </button>
-                <button class="flex-1 flex flex-col items-center">
-                    <a href="friend.html">
-                        <img src="photos/friend.png" alt="Airdrop" class="p-1 ml-1" width="40px" height="40px">
-                        <span class="text-sm">Friends</span>
-                    </a>
-                </button>
-                <button class="flex-1 flex flex-col items-center">
-                    <a href="task.html">
-                        <img src="photos/check-list.png" alt="Task" class="p-1" width="40px" height="40px">
-                        <span class="text-sm">Task</span>
-                    </a>
-                </button>
-                <button class="flex-1 flex flex-col items-center">
-                    <a href="wallet.html">
-                        <img src="photos/wallett.png" alt="Airdrop" class="p-1" width="40px" height="40px">
-                        <span class="text-sm">Wallet</span>
-                    </a>
-                </button>
-            </div>
+    <div
+      class="bg-gradient-to-r from-[#C7913D] to-[#F1D06E] rounded-3xl shadow-2xl p-4 w-full max-w-md text-white"
+      id="game-container"
+      style="display: none"
+    >
+      <div
+        class="flex justify-between items-center mb-4 bg-slate-900/10 rounded-3xl shadow-xl"
+      >
+        <div class="flex items-center">
+          <img
+            src="./photos/logoo.jpg"
+            width="40px"
+            height="40px"
+            alt="User Avatar"
+            class="rounded-full mr-2"
+          />
+          <span id="username"></span> (CEO)
         </div>
-    </div>
-    <div id="sticker" style="display: none; position: absolute;">
-        <img src="./photos/kolang.png" alt="Sticker" style="width: 250px; height: 100px;">
+        <button
+          onclick="showSnackbar()"
+          class="bg-600 p-2 rounded-full flex justify-between items-center bg-slate-900/10 hover:bg-slate-900/5 rounded-3xl"
+        >
+          <span class="font-bold text-lg">2X Coins</span>
+        </button>
+      </div>
+
+      <div
+        id="snackbar"
+        class="hidden fixed bottom-5 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white px-4 py-2 rounded"
+      >
+        Coming Soon !!
+      </div>
+
+      <div
+        class="flex justify-between items-center bg-slate-900/10 hover:bg-slate-900/5 p-2 rounded-3xl shadow-lg mb-4"
+      >
+        <button class="flex-1 items-center p-2">
+          <a href="https://t.me/anzabcoin">
+            <span>Join Community</span>
+          </a>
+        </button>
+      </div>
+
+      <div class="text-center mb-4 mt-8">
+        <div class="text-4xl mb-2">
+          <img
+            src="./photos/scorephoto.png"
+            width="50px"
+            height="50px"
+            alt="Coin"
+            class="inline-block mb-1"
+            id="coin-image"
+          />
+          <span id="coin-count" class="score font-bold text-4xl">0</span>
+        </div>
+      </div>
+      <div class="flex justify-center mb-4" id="coin">
+        <img
+          src="./photos/anzabcoin.png"
+          width="80%"
+          height="80%"
+          alt="Character"
+          class="rounded-full clickable shadow-2xl"
+          onclick="increaseCoins()"
+        />
+      </div>
+      <div class="flex justify-between items-center mb-2">
+        <div class="flex items-center">
+          <img
+            src="./photos/charge.png"
+            id="charge"
+            alt="Energy"
+            class="mr-2"
+          />
+          <div class="flex justify-between items-center">
+            <span id="energy-count">5000</span>
+            <span> / 5000</span>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="flex justify-between items-center bg-slate-900 rounded-3xl shadow-lg mb-2"
+      >
+        <div class="bg-zinc-600 rounded-3xl h-2 w-full mx-2">
+          <div
+            class="bg-gradient-to-r from-[#C7913D] to-[#F1D06E] h-2 rounded-3xl"
+            style="width: 100%"
+            id="inventory-fill"
+          ></div>
+        </div>
+        <br />
+      </div>
+
+      <div
+        class="flex justify-between items-center bg-slate-900 hover:bg-slate-900/95 p-3 rounded-3xl shadow-lg"
+      >
+        <button class="flex-1 flex flex-col items-center">
+          <img
+            src="./photos/pick-hammer.png"
+            alt="Exchange"
+            class="p-1"
+            width="40px"
+            height="40px"
+          />
+          <span class="text-sm">Mine</span>
+        </button>
+
+        <button class="flex-1 flex flex-col items-center">
+          <a href="boost.php">
+            <img
+              src="./photos/start-up.png"
+              alt="Mine"
+              class="p-1"
+              width="40px"
+              height="40px"
+            />
+            <span class="text-sm">Boost</span>
+          </a>
+        </button>
+
+        <button class="flex-1 flex flex-col items-center">
+          <a href="friend.php">
+            <img
+              src="photos/friend.png"
+              alt="Airdrop"
+              class="p-1 ml-1"
+              width="40px"
+              height="40px"
+            />
+            <span class="text-sm">Friends</span>
+          </a>
+        </button>
+
+        <button class="flex-1 flex flex-col items-center">
+          <a href="task.php">
+            <img
+              src="photos/check-list.png"
+              alt="Task"
+              class="p-1"
+              width="40px"
+              height="40px"
+            />
+            <span class="text-sm">Task</span>
+          </a>
+        </button>
+        <button class="flex-1 flex flex-col items-center">
+          <a href="wallet.php">
+            <img
+              src="photos/wallett.png"
+              alt="Airdrop"
+              class="p-1"
+              width="40px"
+              height="40px"
+            />
+            <span class="text-sm">Wallet</span>
+          </a>
+        </button>
+      </div>
     </div>
 
-    <script src="https://www.gstatic.com/firebasejs/9.8.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.8.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.8.0/firebase-database.js"></script>
-    <script src="./assets/js/firebase-config.js"></script>
-    <script src="./assets/js/main.js"></script>
-</body>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const username = localStorage.getItem("username");
+        const coinCount = parseInt(localStorage.getItem("coinCount"), 10) || 0;
+        const energyCount =
+          parseInt(localStorage.getItem("energyCount"), 10) || 5000;
 
+        if (!username) {
+          document.getElementById("welcome-popup").style.display = "block";
+        } else {
+          startGame(username, coinCount, energyCount);
+        }
+
+        setInterval(rechargeEnergy, 1000);
+      });
+
+      function saveName() {
+        const usernameInput = document.getElementById("username-input").value;
+        if (usernameInput) {
+          localStorage.setItem("username", usernameInput);
+          localStorage.setItem("coinCount", 0); // Initialize coinCount
+          localStorage.setItem("energyCount", 5000); // Initialize energyCount
+          startGame(usernameInput, 0, 5000);
+          document.getElementById("welcome-popup").style.display = "none";
+        }
+      }
+
+      function startGame(username, coinCount, energyCount) {
+        document.getElementById("username").textContent = username;
+        document.getElementById("coin-count").textContent = coinCount;
+        document.getElementById("energy-count").textContent = energyCount;
+        document.getElementById("game-container").style.display = "block";
+
+        updateInventory(energyCount);
+      }
+
+      function increaseCoins() {
+        let coinCount = parseInt(localStorage.getItem("coinCount"), 10) || 0;
+        let energyCount =
+          parseInt(localStorage.getItem("energyCount"), 10) || 5000;
+
+        if (energyCount > 0) {
+          coinCount++;
+          energyCount--;
+
+          localStorage.setItem("coinCount", coinCount);
+          localStorage.setItem("energyCount", energyCount);
+
+          document.getElementById("coin-count").textContent = coinCount;
+          document.getElementById("energy-count").textContent = energyCount;
+          updateInventory(energyCount);
+        }
+      }
+
+      function updateInventory(energyCount) {
+        const maxEnergy = 5000;
+        const energyPercent = (energyCount / maxEnergy) * 100;
+        document.getElementById(
+          "inventory-fill"
+        ).style.width = `${energyPercent}%`;
+      }
+
+      function rechargeEnergy() {
+        let energyCount =
+          parseInt(localStorage.getItem("energyCount"), 10) || 0;
+        if (energyCount < 5000) {
+          energyCount = Math.min(energyCount + 10, 5000);
+          localStorage.setItem("energyCount", energyCount);
+          document.getElementById("energy-count").textContent = energyCount;
+          updateInventory(energyCount);
+        }
+      }
+
+      function showSnackbar() {
+        const snackbar = document.getElementById("snackbar");
+        snackbar.classList.remove("hidden");
+        setTimeout(() => {
+          snackbar.classList.add("hidden");
+        }, 2000);
+      }
+    </script>
+  </body>
 </html>

@@ -82,12 +82,38 @@
       .back-arrow:hover {
         color: white;
       }
+      /* Ensure the card takes full width on mobile devices */
+      @media (max-width: 600px) {
+        .swiper-slide {
+          width: 100% !important;
+        }
+
+        .skin-button {
+          width: 100%;
+        }
+
+        .boosters-button-detail {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .boosters-button-image img {
+          width: 100%;
+          height: auto;
+        }
+
+        .boosters-button-data {
+          display: flex;
+          justify-content: center;
+          width: 100%;
+        }
+      }
     </style>
   </head>
 
   <body class="boost">
     <a href="index.html" class="back-arrow">&#8592;</a>
-
 
     <div
       class="user-balance ml-4 mr-4 bg-slate-900 rounded-3xl shadow-lg p-4 mt-2"
@@ -115,7 +141,7 @@
             <div class="skin-button m-b-1">
               <div class="boosters-button-detail">
                 <a
-                  href="https://www.youtube.com/@Mr.Lightcode"
+                  href="https://www.youtube.com"
                   class="task-link"
                   data-task-id="task1"
                 >
@@ -167,7 +193,7 @@
             <div class="skin-button m-b-1">
               <div class="boosters-button-detail">
                 <a
-                  href="https://t.me/anzabcoin"
+                  href="https://t.me/"
                   class="task-link"
                   data-task-id="task2"
                 >

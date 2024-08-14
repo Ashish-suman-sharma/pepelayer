@@ -31,22 +31,46 @@
       sizes="512x512"
     />
     <script src="https://cdn.tailwindcss.com"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
-    />
     <style>
       * {
         user-select: none;
       }
-      .swiper-wrapper {
+      .task-card {
+        background-color: #1f2937;
+        border-radius: 15px;
+        margin: 10px auto;
+        padding: 15px;
+        width: 95%;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         display: flex;
-        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
       }
-      .swiper-slide {
+      .task-link {
         display: flex;
-        flex-direction: column;
-        margin-bottom: 1rem;
+        align-items: center;
+        text-decoration: none;
+        color: white;
+        width: 100%;
+      }
+      .task-link img {
+        margin-right: 15px;
+      }
+      .task-info {
+        flex-grow: 1;
+      }
+      .task-info h4 {
+        margin: 0;
+        font-size: 18px;
+      }
+      .task-info h5 {
+        margin: 5px 0 0 0;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+      }
+      .task-info h5 img {
+        margin-right: 10px;
       }
       .disabled {
         opacity: 0.5;
@@ -68,7 +92,6 @@
       .claim-button:hover {
         background-color: #45a049;
       }
-
       .back-arrow {
         display: inline-block;
         text-decoration: none;
@@ -81,33 +104,6 @@
       }
       .back-arrow:hover {
         color: white;
-      }
-      /* Ensure the card takes full width on mobile devices */
-      @media (max-width: 600px) {
-        .swiper-slide {
-          width: 100% !important;
-        }
-
-        .skin-button {
-          width: 100%;
-        }
-
-        .boosters-button-detail {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-        }
-
-        .boosters-button-image img {
-          width: 100%;
-          height: auto;
-        }
-
-        .boosters-button-data {
-          display: flex;
-          justify-content: center;
-          width: 100%;
-        }
       }
     </style>
   </head>
@@ -135,114 +131,36 @@
       <div class="boosters-title" style="padding: 0 1.25rem">
         <h2 class="select-none text-2xl">Tasks</h2>
       </div>
-      <div class="swiper skinSwiper">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide slide" id="task1">
-            <div class="skin-button m-b-1">
-              <div class="boosters-button-detail">
-                <a
-                  href="https://www.youtube.com"
-                  class="task-link"
-                  data-task-id="task1"
-                >
-                  <div class="boosters-button-image">
-                    <img
-                      src="./photos/youtube.png"
-                      width="50px"
-                      alt="YouTube"
-                    />
-                  </div>
-                  <div>
-                    <h4 class="tooltip">
-                      Subscribe Youtube Channel<span class="tooltiptext"
-                        >Daily bonus with unique rewards</span
-                      >
-                    </h4>
-                    <div class="boosters-button-data">
-                      <img
-                        src="./photos/anzabcoin.png"
-                        width="20px"
-                        class="m-r-25"
-                      />
-                      <h5>50,000</h5>
-                    </div>
-                  </div>
-                </a>
-              </div>
-              <div>
-                <svg
-                  width="30px"
-                  height="30px"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M9 5L14.15 10C14.4237 10.2563 14.6419 10.5659 14.791 10.9099C14.9402 11.2539 15.0171 11.625 15.0171 12C15.0171 12.375 14.9402 12.7458 14.791 13.0898C14.6419 13.4339 14.4237 13.7437 14.15 14L9 19"
-                    stroke="#ffffff"
-                    opacity="0.4"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-              </div>
+      <div class="task-list">
+        <div class="task-card" id="task1">
+          <a
+            href="https://www.youtube.com"
+            class="task-link"
+            data-task-id="task1"
+          >
+            <img src="./photos/youtube.png" width="50px" alt="YouTube" />
+            <div class="task-info">
+              <h4>Subscribe Youtube Channel</h4>
+              <h5>
+                <img src="./photos/anzabcoin.png" width="20px" alt="coins" />
+                50,000
+              </h5>
             </div>
-          </div>
-          <div class="swiper-slide slide" id="task2">
-            <div class="skin-button m-b-1">
-              <div class="boosters-button-detail">
-                <a
-                  href="https://t.me/"
-                  class="task-link"
-                  data-task-id="task2"
-                >
-                  <div class="boosters-button-image">
-                    <img
-                      src="./photos/telegram.png"
-                      width="50px"
-                      alt="Telegram"
-                    />
-                  </div>
-                  <div>
-                    <h4 class="tooltip">
-                      Join Community<span class="tooltiptext"
-                        >Daily bonus with unique rewards</span
-                      >
-                    </h4>
-                    <div class="boosters-button-data">
-                      <img
-                        src="./photos/anzabcoin.png"
-                        width="20px"
-                        class="m-r-25"
-                      />
-                      <h5>50,000</h5>
-                    </div>
-                  </div>
-                </a>
-              </div>
-              <div>
-                <svg
-                  width="30px"
-                  height="30px"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M9 5L14.15 10C14.4237 10.2563 14.6419 10.5659 14.791 10.9099C14.9402 11.2539 15.0171 11.625 15.0171 12C15.0171 12.375 14.9402 12.7458 14.791 13.0898C14.6419 13.4339 14.4237 13.7437 14.15 14L9 19"
-                    stroke="#ffffff"
-                    opacity="0.4"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide slide"></div>
+          </a>
         </div>
+        <div class="task-card" id="task2">
+          <a href="https://t.me/" class="task-link" data-task-id="task2">
+            <img src="./photos/telegram.png" width="50px" alt="Telegram" />
+            <div class="task-info">
+              <h4>Join Community</h4>
+              <h5>
+                <img src="./photos/anzabcoin.png" width="20px" alt="coins" />
+                50,000
+              </h5>
+            </div>
+          </a>
+        </div>
+        <!-- Add more task cards as needed -->
       </div>
     </div>
 
@@ -270,30 +188,26 @@
         }
 
         function checkTaskCompletion() {
-          document.querySelectorAll(".swiper-slide").forEach((slide) => {
-            const taskId = slide.id;
+          document.querySelectorAll(".task-card").forEach((card) => {
+            const taskId = card.id;
             if (localStorage.getItem(`task-${taskId}-completed`) === "true") {
-              slide.classList.add("disabled");
+              card.classList.add("disabled");
             }
           });
         }
 
         function claimCoins() {
-          // Define the number of coins to deduct on claim
           const coinsToDeduct = 50000;
           let currentCoins = parseInt(scoreElement.textContent) || 0;
 
           if (currentCoins >= coinsToDeduct) {
-            // Deduct coins from this page
             currentCoins -= coinsToDeduct;
             scoreElement.textContent = currentCoins;
             localStorage.setItem("score", currentCoins);
 
-            // Update index.html page's coinCount
-            // Assuming index.html is on the same domain and the same storage context
             let indexPageCoins = localStorage.getItem("coinCount") || 0;
             indexPageCoins = parseInt(indexPageCoins) + coinsToDeduct;
-            localStorage.setItem("coinCount", indexPageCoins); // Fix the key here
+            localStorage.setItem("coinCount", indexPageCoins);
           } else {
             alert("Not enough coins to claim.");
           }
@@ -313,24 +227,11 @@
             markTaskAsCompleted(taskId);
             setTimeout(() => {
               location.reload();
-            }, 2000); // Reload page after 2 seconds
+            }, 2000);
           });
         });
 
         checkTaskCompletion();
-      });
-    </script>
-
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script>
-      const swiper = new Swiper(".swiper", {
-        slidesPerView: "auto",
-        spaceBetween: 20,
-        freeMode: true,
-        pagination: {
-          el: ".swiper-pagination",
-          clickable: true,
-        },
       });
     </script>
   </body>

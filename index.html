@@ -30,14 +30,18 @@
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         border-radius: 8px;
       }
+
+      .mr-2 {
+        width: 30px;
+      }
     </style>
   </head>
 
   <body
     class="min-h-screen bg-gradient-to-r from-[#C7913D] to-[#F1D06E] flex justify-center items-center p-3"
   >
-    <div id="welcome-popup" class="popup">
-      <h2 class="text-lg font-bold mb-2">Welcome!</h2>
+    <div id="welcome-popup" class="popup w-11/12">
+      <h2 class="text-lg font-bold mb-2">Welcome! To <span class="text-green-400">pepe layer 2</span></h2>
       <p class="mb-4">Please enter your name:</p>
       <input
         type="text"
@@ -47,7 +51,7 @@
       />
       <button
         onclick="saveName()"
-        class="bg-blue-500 text-white px-4 py-2 rounded"
+        class="bg-green-500 text-white px-4 py-2 rounded w-full"
       >
         Submit
       </button>
@@ -63,7 +67,7 @@
       >
         <div class="flex items-center">
           <img
-            src="./photos/logoo.jpg"
+            src="./photos/anzabcoin.png"
             width="40px"
             height="40px"
             alt="User Avatar"
@@ -99,7 +103,7 @@
       <div class="text-center mb-4 mt-8">
         <div class="text-4xl mb-2">
           <img
-            src="./photos/scorephoto.png"
+            src="./photos/images-removebg-preview.png"
             width="50px"
             height="50px"
             alt="Coin"
@@ -121,12 +125,7 @@
       </div>
       <div class="flex justify-between items-center mb-2">
         <div class="flex items-center">
-          <img
-            src="./photos/charge.png"
-            id="charge"
-            alt="Energy"
-            class="mr-2"
-          />
+          <img src="photos\flash.png" id="charge" alt="Energy" class="mr-2" />
           <div class="flex justify-between items-center">
             <span id="energy-count">5000</span>
             <span> / 5000</span>
@@ -162,7 +161,7 @@
         </button>
 
         <button class="flex-1 flex flex-col items-center">
-          <a href="boost.php">
+          <a href="boost.html">
             <img
               src="./photos/start-up.png"
               alt="Mine"
@@ -175,7 +174,7 @@
         </button>
 
         <button class="flex-1 flex flex-col items-center">
-          <a href="friend.php">
+          <a href="friend.html">
             <img
               src="photos/friend.png"
               alt="Airdrop"
@@ -200,7 +199,7 @@
           </a>
         </button>
         <button class="flex-1 flex flex-col items-center">
-          <a href="wallet.php">
+          <a href="wallet.html">
             <img
               src="photos/wallett.png"
               alt="Airdrop"
